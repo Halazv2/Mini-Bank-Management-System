@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <string.h>
+
 int main()
 {
-    int choice, numAccounts = 1, menu, temp, i, answer;
+    int choice, numAccounts = 1, menu, flag, i, answer;
     char search, found, fname[50], lname[50], ID[20];
     double Pamount[numAccounts], amount, withdrawAmount, depositAmount, newAmount;
-    system("color 3");
+    system("color 9");
 Exit:
     printf("\n\n\t\t\t\t\xB2\xB2\xB2\xB2\xB2\xB2\xB2 Welcome To YouCode Bank \xB2\xB2\xB2\xB2\xB2\xB2\xB2");
     printf("\n");
@@ -36,6 +36,7 @@ Exit:
         scanf("%s", &ID);
         printf("\n\t\t Enter the amount to deposit:$");
         scanf("%lf", &amount);
+
         system("cls");
         //affichage
         //affichage
@@ -47,7 +48,7 @@ Exit:
         printf("\n\t\t ID number:\t%s", ID);
         printf("\n\t\t Your current balance is:$\t%.2lf ", amount);
 
-        //go back to the menu
+        //go to the menu
         printf("\n\t\t Enter number 0 to go to the program menu:\t");
         scanf("%d", &menu);
         system("cls");
@@ -62,8 +63,8 @@ Exit:
             printf("\n");
 
             printf("\n\t\t1. View Account \n");
-            printf("\n\t\t2. Transfer funds \n");
-            printf("\n\t\t3. Deposit money \n");
+            printf("\n\t\t2. Withdraw \n");
+            printf("\n\t\t3. Deposit \n");
             printf("\n\t\t4. Log out\n");
 
             printf("\n\n\t\t Enter your choice:\t");
@@ -99,7 +100,7 @@ Exit:
         case 2:
         {
             system("cls");
-            printf("\n\t\t\t**********Process a cash withdrawal.**********\n");
+            printf("\n\t\t\t**********  Process a cash withdrawal  **********\n");
             printf(" Enter Amount to Withdraw");
             scanf("%lf", &withdrawAmount);
 
@@ -111,7 +112,7 @@ Exit:
             else
             {
                 amount = amount - withdrawAmount;
-                printf("\n\tdone!!Your new balance is: $%lf\n", amount);
+                printf("\n\tdone!!Your new balance is: $%.2lf\n", amount);
             }
         }
             printf("\n\tenter 1 to go back to the menu:\t");
@@ -126,7 +127,7 @@ Exit:
         {
             system("cls");
 
-            printf("\n\t\t\t**********Process a cash deposit.**********\n");
+            printf("\n\t\t\t**********  Process a cash deposit  **********\n");
             printf("\n\tEnter the amount of the deposit:\t");
             scanf("%lf", &depositAmount);
 
@@ -151,7 +152,6 @@ Exit:
         }
         break;
         }
-        ///222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
         //    more than one accouant
         //    more than one accouant
         //    more than one accouant
@@ -159,21 +159,23 @@ Exit:
     }
     else if (choice == 2)
     {
-        char Pfname[numAccounts][20], Plname[numAccounts][20], PID[numAccounts][20];
         printf("\n\n\t\tnumber of accounts you want to create:\t");
         scanf("%d", &numAccounts);
+        char Pfname[numAccounts][20], Plname[numAccounts][20], PID[numAccounts][20];
+
         for (i = 0; i < numAccounts; i++)
         {
-            //create1
+            //create
             //create
             printf("\n\t\tEnter your first and your last name:\t");
             scanf("%s %s", &Pfname[i], &Plname[i]);
             printf("\n\t\tEnter your ID number:\t");
             scanf("%s", &PID[i]);
-            printf("\n\t\tEnter the amount to deposit:$\t");
+            printf("\n\t\tEnter the amount to deposit:$");
             scanf("%lf", &Pamount[i]);
             printf("**********************************");
             system("cls");
+
             //affichage
             //affichage
 
@@ -185,13 +187,15 @@ Exit:
         }
         system("cls");
 
-    firstMenu:
         for (i = 0; i < numAccounts; i++)
         {
-            printf("\nFull name:\t%s %s", Pfname[i], Plname[i]);
-            printf("\nID number:\t%s", PID[i]);
-            printf("\nYour current balance is:\t%.2lf ", Pamount[i]);
-            printf("\n");
+
+            printf("\nAccount N%d :\n", i + 1);
+
+            printf("full name:%s %s\n", Pfname[i], Plname[i]);
+            printf("ID:%s\n", PID[i]);
+            printf("amount:%.2f\n", Pamount[i]);
+            printf("--------------------------------------");
         }
 
         printf("\n\t\t Enter number 0 to go to the program menu:\t");
@@ -217,12 +221,14 @@ Exit:
             printf("\n\t\t3. search\n");
             printf("\n\t\t4. Ascending order\n");
             printf("\n\t\t5. Descending Order\n");
-            printf("\n\t\t6. Loyalty\n");
-            printf("\n\t\t7. Log out\n");
+            printf("\n\t\t6. Ascending order by amount ");
+            printf("\n\t\t7. Descending Order by amount ");
+            printf("\n\t\t8. Loyalty\n");
+            printf("\n\t\t9. Log out\n");
 
             printf("\n\n\t\t Enter your choice:\t");
             scanf("%d", &choice);
-            while (choice < 1 || choice > 7)
+            while (choice < 1 || choice > 9)
             {
 
                 printf("\n\n\t\t Enter your choice:\t");
@@ -231,37 +237,36 @@ Exit:
         }
         switch (choice)
         {
-        //View Accounts
-        //View Accounts
-        //View Accounts
-        //View Accounts
+            //View Accounts
+            //View Accounts
+            //View Accounts
+            //View Accounts
         case 1:
         {
             for (i = 0; i < numAccounts; i++)
             {
-                printf("\n Accounts N %d:\n \nfull name:\t %s %s \n\nID:\t %s \n\namount:\t $%.2lf\n\n", i + 1, Pfname[i], Plname[i], PID[i], Pamount[i]);
-                printf("\n");
-            }
+                printf("\nAccount N%d :\n", i + 1);
 
-            printf("\n\tenter 1 to go back to the menu:\t");
+                printf("full name:%s %s\n", Pfname[i], Plname[i]);
+                printf("ID:%s\n", PID[i]);
+                printf("amount:%.2f\n", Pamount[i]);
+                printf("--------------------------------------");
+            }
+        }
+
+            printf("\n\tEnter 1 to go back to the menu:\t");
             scanf("%d", &choice);
-            while (choice != 1)
-            {
 
-                printf("\n\n\t\t Enter your choice:\t");
-                scanf("%d", &choice);
-            }
             if (choice == 1)
             {
                 system("cls");
                 goto Menu1;
             }
             break;
-        }
             //Operation
             //Operation
             //Operation
-            //finishAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
         case 2:
         {
 
@@ -273,8 +278,12 @@ Exit:
 
             for (i = 0; i < numAccounts; i++)
             {
-                printf("\n Accounts N %d:\n \nfull name:\t%s %s \n\nID:\t %s\n\namount:\t $%.2lf\n\n", i + 1, Pfname[i], Plname[i], PID[i], Pamount[i]);
-                printf("\n");
+                printf("\nAccount N%d :\n", i + 1);
+
+                printf("full name:%s %s\n", Pfname[i], Plname[i]);
+                printf("ID:%s\n", PID[i]);
+                printf("amount:%.2f\n", Pamount[i]);
+                printf("--------------------------------------");
             }
             printf("\t\t\t************************************************************");
             printf("\nChoose the number of account you want to work with:\t");
@@ -297,15 +306,8 @@ Exit:
                     Pamount[answer - 1] = Pamount[answer - 1] - withdrawAmount;
                     printf("\n\tdone!!Your new balance is: $%.2lf\n", Pamount[answer - 1]);
                 }
-
                 printf("\n\tenter 1 to go back to the menu:\t");
                 scanf("%d", &choice);
-                while (choice != 1)
-                {
-
-                    printf("\n\n\t\t Enter your choice:\t");
-                    scanf("%d", &choice);
-                }
                 if (choice == 1)
                 {
                     system("cls");
@@ -317,21 +319,16 @@ Exit:
             {
                 system("cls");
 
-                printf("\n\t\t\t**********Process a cash deposit.**********\n");
+                printf("\n\t\t\t**********  Process a cash deposit  **********\n");
                 printf("\n\tEnter the amount of the deposit:\t");
                 scanf("%lf", &depositAmount);
 
                 Pamount[answer - 1] = Pamount[answer - 1] + depositAmount;
-                printf("\n\tdone!!Your new balance is: $%.2lf\n", Pamount[answer - 1]);
+                printf("\n\tdone!!Your new balance is: $%lf\n", Pamount[answer - 1]);
 
                 printf("\n\tenter 1 to go back to the menu:\t");
                 scanf("%d", &choice);
-                while (choice != 1)
-                {
 
-                    printf("\n\n\t\t Enter your choice:\t");
-                    scanf("%d", &choice);
-                }
                 if (choice == 1)
                 {
                     system("cls");
@@ -340,31 +337,36 @@ Exit:
             }
             break;
         }
-            //aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            //recherch
-            //recherch
-            //recherch
-        case 3:
-        {
 
-            printf("to 'search' for an account enter number 1\n");
-            scanf("%d", &answer);
-            if (answer == 1)
+        case 3:
+        { // //recherch
+            //  printf("to 'search' for an account enter number 1\n");
+            //scanf("%d", &answer);
+            //if (answer == 1)
             {
             chercherAgain:
                 system("cls");
                 printf("  enter ID's account: ");
                 char rechercheID[20];
+                /* Assume that ID does not exists in array 
+                bach maydirch blan dyal kolche momkin*/
                 bool flag = false; // check if there is an acounte with same ID;
                 scanf("%s", &rechercheID);
                 for (int i = 0; i < numAccounts; i++)
                 {
-                    if (!strcmp(rechercheID, PID[i]))
+                    if (strcmp(rechercheID, PID[i]) == 0)
                     {
-                        //strcmp is for checking if recherche CIN value is in ID[i].
+                        // Cette fonction permet de comparer deux chaînes de caractères et
+                        // de savoir si la première est inférieure,
+                        // égale ou supérieure à la seconde.
+                        //strcmp is for checking if rechercheID value is in ID[i].
                         printf("\n  the search result: \n");
-                        printf("\n\tFull name: %s %s.\n\tID : %s.\n\tAmount : %.2lf.\n", Pfname[i], Plname[i], PID[i], Pamount[i]);
-                        printf("\n--------------------------------------------------------------\n\n");
+                        printf("\nAccount N%d :\n", i + 1);
+
+                        printf("full name:%s %s\n", Pfname[i], Plname[i]);
+                        printf("ID:%s\n", PID[i]);
+                        printf("amount:%.2f\n", Pamount[i]);
+                        printf("--------------------------------------");
                         flag = true;
                         break;
                     }
@@ -379,13 +381,13 @@ Exit:
                     scanf("%d", &r);
                     while (r != 1)
                     {
-                        printf("  \tEntre:\t1 to try again..\n");
+                        printf("  \tEntre 1 to try again..\n");
                         printf("\nEnter your choice: ");
                         scanf("%d", &r);
                     }
                     if (r == 1)
                     {
-                        goto chercherAgain; // again
+                        goto chercherAgain; // try again
                     }
                 }
             }
@@ -404,53 +406,55 @@ Exit:
             }
             break;
         }
-            //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         case 4:
         {
-
+            printf("\n\t\t\t*****************  Ascending order  *****************\n");
             // variables pour enregistrer les minimum acounts apres chaque tour de bocle.
-            int APlname[50][50];
-            int APfname[50][50];
-            int APID[100][30];
-            double minMontant[100];
-            //hfezuhqiugfliuGFUIEGFUIGEUIFGZIQGFILQUIFEZUIGFUIZQGFEUILGQEUFLZIGLUIQFZGUILQUIGFUEIQZGUIGFEUIGUIFQGUIFEGUIQGUIFGUIQGZUI
-            for (int i = 1; i < numAccounts; i++)
+            char APlname[50];
+            char APfname[50];
+            char APID[100];
+            float kaskhawi;
+            for (int i = 1; i < numAccounts; i++) // ila bdina mn 0  lwla f nfs la case radi t9arn rasha
             {
 
-                for (int j = 0; j < numAccounts - 1; j++)
+                for (int j = 0; j < numAccounts - 1; j++) //BACH MAYMCHICH LEKHER
                 {
                     if (Pamount[j] > Pamount[i])
                     {
                         // check for the minimun account.
+                        //Cette fonction permet de copier le contenu d'une chaîne de caractères dans une autre.
+                        //swap
 
-                        minMontant[100] = Pamount[i];
+                        kaskhawi = Pamount[i];
                         Pamount[i] = Pamount[j];
-                        Pamount[j] = minMontant[100];
+                        Pamount[j] = kaskhawi;
 
-                        strcpy(APID[i], PID[i]);
+                        strcpy(APID, PID[i]);
                         strcpy(PID[i], PID[j]);
-                        strcpy(PID[j], APID[i]);
+                        strcpy(PID[j], APID);
 
-                        strcpy(APfname[i], Pfname[i]);
-                        strcpy(APlname[i], Plname[i]);
-
+                        strcpy(APfname, Pfname[i]);
                         strcpy(Pfname[i], Pfname[j]);
-                        strcpy(Plname[i], Plname[j]);
+                        strcpy(Pfname[j], APfname);
 
-                        strcpy(Pfname[j], APfname[i]);
-                        strcpy(Plname[j], APlname[i]);
+                        strcpy(APlname, Plname[i]);
+                        strcpy(Plname[i], Plname[j]);
+                        strcpy(Plname[j], APlname);
                     }
                 }
             }
             for (int i = 0; i < numAccounts; i++)
             {
                 // display les comptes qui est enregistrer.
-                printf("Compte N%d :\n", i + 1);
-                printf("\t\tFull name : %s %s.\n\tID: %s.\n\tAmount: $%.2lf.\n", Pfname[i], Plname[i], PID[i], Pamount[i]);
-                printf("--------------------------------------------------------------\n");
+                printf("\nAccount N%d :\n", i + 1);
+
+                printf("full name:%s %s\n", Pfname[i], Plname[i]);
+                printf("ID:%s\n", PID[i]);
+                printf("amount:%.2f\n", Pamount[i]);
+                printf("--------------------------------------");
             }
 
-            printf("\n\tenter 1 to go back to the menu:\t");
+            printf("\n\tEnter 1 to go back to the menu:\t");
             scanf("%d", &choice);
             while (choice > 1)
             {
@@ -469,12 +473,13 @@ Exit:
 
         case 5:
         {
+            printf("\n\t\t\t*****************  Descending Order  *****************\n");
 
             // variables pour enregistrer les minimum acounts apres chaque tour de bocle.
-            int DPlname[50][50];
-            int DPfname[50][50];
-            int DPID[100][30];
-            double minMontant[100];
+            char DPlname[50];
+            char DPfname[50];
+            char DPID[100];
+            float kaskhawi;
 
             for (int i = 1; i < numAccounts; i++)
             {
@@ -485,34 +490,33 @@ Exit:
                     {
                         // check for the minimun account.
 
-                        minMontant[100] = Pamount[i];
+                        kaskhawi = Pamount[i];
                         Pamount[i] = Pamount[j];
-                        Pamount[j] = minMontant[100];
+                        Pamount[j] = kaskhawi;
 
-                        strcpy(DPID[i], PID[i]);
+                        strcpy(DPID, PID[i]);
                         strcpy(PID[i], PID[j]);
-                        strcpy(PID[j], DPID[i]);
+                        strcpy(PID[j], DPID);
 
-                        strcpy(DPfname[i], Pfname[i]);
-                        strcpy(DPlname[i], Plname[i]);
-
+                        strcpy(DPfname, Pfname[i]);
                         strcpy(Pfname[i], Pfname[j]);
-                        strcpy(Plname[i], Plname[j]);
+                        strcpy(Pfname[j], DPfname);
 
-                        strcpy(Pfname[j], DPfname[i]);
-                        strcpy(Plname[j], DPlname[i]);
+                        strcpy(DPlname, Plname[i]);
+                        strcpy(Plname[i], Plname[j]);
+                        strcpy(Plname[j], DPlname);
                     }
                 }
             }
             for (int i = 0; i < numAccounts; i++)
             {
                 // display les comptes qui est enregistrer.
-                printf("Compte N%d :\n", i + 1);
-                // printf("\t\tFull name : %s %s.\n\tID: %s.\n\tAmount: $%.2lf.\n",Pfname[i],Plname[i],PID[i],Pamount[i]);
+                printf("\nAccount N%d :\n", i + 1);
 
                 printf("full name:%s %s\n", Pfname[i], Plname[i]);
                 printf("ID:%s\n", PID[i]);
-                printf("amount:%.2lf\n", Pamount[i]);
+                printf("amount:%.2f\n", Pamount[i]);
+                printf("--------------------------------------");
             }
 
             printf("\n\tenter 1 to go back to the menu:\t");
@@ -531,13 +535,85 @@ Exit:
             }
         }
         break;
-
         case 6:
         {
-            int DPlname[50][50];
-            int DPfname[50][50];
-            int DPID[100][30];
-            double minMontant[100];
+
+            int y;
+            char APlname[50];
+            char APfname[50];
+            char APID[100];
+            float kaskhawi;
+            printf("\n\t\t\t*****************  Ascending order by amount  *****************\n");
+            printf("Please enter an amount:\n");
+            scanf("%d", &y);
+
+            for (int i = 1; i < numAccounts; i++)
+            {
+
+                for (int j = 0; j < numAccounts - 1; j++)
+                {
+                    if (Pamount[j] > Pamount[i])
+                    {
+                        // check for the minimun account.
+
+                        kaskhawi = Pamount[i];
+                        Pamount[i] = Pamount[j];
+                        Pamount[j] = kaskhawi;
+
+                        strcpy(APID, PID[i]);
+                        strcpy(PID[i], PID[j]);
+                        strcpy(PID[j], APID);
+
+                        strcpy(APfname, Pfname[i]);
+                        strcpy(Pfname[i], Pfname[j]);
+                        strcpy(Pfname[j], APfname);
+
+                        strcpy(APlname, Plname[i]);
+                        strcpy(Plname[i], Plname[j]);
+                        strcpy(Plname[j], APlname);
+                    }
+                }
+            }
+            for (int i = 0; i < numAccounts; i++)
+            {
+                if (Pamount[i] >= y)
+                {
+                    // display les comptes qui est enregistrer.
+                    printf("\nAccount N%d :\n", i + 1);
+
+                    printf("full name:%s %s\n", Pfname[i], Plname[i]);
+                    printf("ID:%s\n", PID[i]);
+                    printf("amount:%.2f\n", Pamount[i]);
+                    printf("--------------------------------------");
+                }
+            }
+
+            printf("\n\tEnter 1 to go back to the menu:\t");
+            scanf("%d", &choice);
+            while (choice > 1)
+            {
+
+                printf("\n\n\t\t Enter your choice:\t");
+                scanf("%d", &choice);
+            }
+
+            if (choice == 1)
+            {
+                system("cls");
+                goto Menu1;
+            }
+        }
+        break;
+        case 7:
+        {
+            int y;
+            char APlname[50];
+            char APfname[50];
+            char APID[100];
+            double kaskhawi;
+            printf("\n\t\t\t*****************  Descending order by amount  *****************\n");
+            printf("Please enter an amount:\n");
+            scanf("%d", &y);
 
             for (int i = 1; i < numAccounts; i++)
             {
@@ -548,36 +624,102 @@ Exit:
                     {
                         // check for the minimun account.
 
-                        minMontant[100] = Pamount[i];
+                        kaskhawi = Pamount[i];
                         Pamount[i] = Pamount[j];
-                        Pamount[j] = minMontant[100];
+                        Pamount[j] = kaskhawi;
 
-                        strcpy(DPID[i], PID[i]);
+                        strcpy(APID, PID[i]);
                         strcpy(PID[i], PID[j]);
-                        strcpy(PID[j], DPID[i]);
+                        strcpy(PID[j], APID);
 
-                        strcpy(DPfname[i], Pfname[i]);
-                        strcpy(DPlname[i], Plname[i]);
-
+                        strcpy(APfname, Pfname[i]);
                         strcpy(Pfname[i], Pfname[j]);
-                        strcpy(Plname[i], Plname[j]);
+                        strcpy(Pfname[j], APfname);
 
-                        strcpy(Pfname[j], DPfname[i]);
-                        strcpy(Plname[j], DPlname[i]);
+                        strcpy(APlname, Plname[i]);
+                        strcpy(Plname[i], Plname[j]);
+                        strcpy(Plname[j], APlname);
+                    }
+                }
+            }
+            for (int i = 0; i < numAccounts; i++)
+            {
+                if (Pamount[i] >= y)
+                {
+                    // display les comptes qui est enregistrer.
+                    printf("\nAccount N%d :\n", i + 1);
+
+                    printf("full name:%s %s\n", Pfname[i], Plname[i]);
+                    printf("ID:%s\n", PID[i]);
+                    printf("amount:%.2f\n", Pamount[i]);
+                    printf("--------------------------------------");
+                }
+            }
+
+            printf("\n\tEnter 1 to go back to the menu:\t");
+            scanf("%d", &choice);
+            while (choice > 1)
+            {
+
+                printf("\n\n\t\t Enter your choice:\t");
+                scanf("%d", &choice);
+            }
+
+            if (choice == 1)
+            {
+                system("cls");
+                goto Menu1;
+            }
+        }
+        break;
+
+        case 8:
+        {
+            printf("\n\t\t\t*****************  Loyalty  *****************");
+
+            char DPlname[50][50];
+            char DPfname[50][50];
+            char DPID[100][30];
+            double kaskhawi;
+
+            for (int i = 1; i < numAccounts; i++)
+            {
+
+                for (int j = 0; j < numAccounts - 1; j++)
+                {
+                    if (Pamount[j] < Pamount[i])
+                    {
+                        // check for the minimun account.
+
+                        kaskhawi = Pamount[i];
+                        Pamount[i] = Pamount[j];
+                        Pamount[j] = kaskhawi;
+
+                        strcpy(DPID, PID[i]);
+                        strcpy(PID[i], PID[j]);
+                        strcpy(PID[j], DPID);
+
+                        strcpy(DPfname, Pfname[i]);
+                        strcpy(Pfname[i], Pfname[j]);
+                        strcpy(Pfname[j], DPfname);
+
+                        strcpy(DPlname, Plname[i]);
+                        strcpy(Plname[i], Plname[j]);
+                        strcpy(Plname[j], DPlname);
                     }
                 }
             }
             for (int i = 0; i < 3; i++)
             {
-                Pamount[i] += Pamount[i] * 1.013;
+                Pamount[i] = Pamount[i] * 1.013;
 
                 // display les comptes qui est enregistrer.
-                printf("Compte N%d :\n", i + 1);
-                // printf("\t\tFull name : %s %s.\n\tID: %s.\n\tAmount: $%.2lf.\n",Pfname[i],Plname[i],PID[i],Pamount[i]);
+                printf("\nAccount N%d :\n", i + 1);
 
                 printf("full name:%s %s\n", Pfname[i], Plname[i]);
                 printf("ID:%s\n", PID[i]);
-                printf("amount:%.2lf\n", Pamount[i]);
+                printf("amount:%.2f\n", Pamount[i]);
+                printf("--------------------------------------");
             }
             printf("\n\tenter 1 to go back to the menu:\t");
             scanf("%d", &choice);
@@ -596,7 +738,7 @@ Exit:
             break;
         }
 
-        case 7:
+        case 9:
         {
             system("cls");
             goto Exit;
